@@ -25,16 +25,17 @@ def potential_f(x1, z1):
     # zzeros = np.nonzero(np.power(zz - z1, 2) == 0)
     r = np.sqrt(np.power(xx - x1, 2) + np.power(yy, 2) + np.power(zz - z1, 2))
 
-    # rzeros = np.nonzero(r == 0)
-    phi = - density / r
-    phi[np.isinf(phi) | np.isnan(phi)] = 0
+    phi = np.zeros(r.shape)
+    #active = (r != 0) & (density != 0)
+    np.negative(np.divide(density, r, where=active), out=phi)
+
     return np.sum(phi, axis=None)
 
 
-potential = np.zeros((width*2, height*2))
+potential = np.zeros((width * 2, height * 2))
 
 for i1 in tqdm(range(width * 2)):
-    for k1 in range(height+1, height * 2):
+    for k1 in range(height + 1, height * 2):
         xxx = x[i1]
         zzz = z[k1]
         p = potential_f(xxx, zzz)
