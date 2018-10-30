@@ -1,13 +1,13 @@
 import numpy as np
 
-disk_radius = 200
-disk_height = 2
+disk_radius = 100
+disk_height = 1
 
 voxels_per_unit = 1
 
 x_range = [-disk_radius*2, disk_radius*2]
 y_range = [-disk_radius*2, disk_radius*2]
-z_range = [-disk_height*5, disk_height*5]
+z_range = [-disk_radius/5, disk_radius/5]
 
 axis_names = 'xyz'
 shape = (
